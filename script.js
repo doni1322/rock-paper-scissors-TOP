@@ -1,37 +1,83 @@
-function getComputerChoice(){
-    let computerChoice = Math.floor(Math.random() * 3);
-    if(computerChoice === 0){
-        computerChoice = 'rock';
-    } else if(computerChoice === 1){
-        computerChoice = 'paper';
-    } else {
-        computerChoice = 'scissors';
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Rock Game</title>
+</head>
+<body>
+	<p>Rock Paper Scissors</p>
+
+	<button onclick="
+     playGame('Rock');
+    ">Rock</button>
+
+	<button onclick="
+	 playGame('Paper');
+    ">Paper</button>
+
+
+	<button onclick="
+    playGame('Scissors');
+    ">Scissors</button>
+
+
+<script>
+    function playGame(playerMove) {
+    const computerMove = pickComptuerMove(); /* Perdorimi i funksioneve per te mos perseritur kodin e njejt. */
+
+     let result = '';
+
+     if(playerMove === 'Scissors') {
+        if(computerMove === 'Rock') {
+        result = 'You lose.';
+     } else if (computerMove === 'Paper') {
+        result = 'You win!';
+     } else if(computerMove === 'Scissors') {
+        result = 'Tie.';
+     }
+
+     } else if (playerMove === 'Paper') {
+        if(computerMove === 'Rock') {
+        result = 'You Win.';
+     } else if (computerMove === 'Paper') {
+        result = 'Tie';
+     } else if(computerMove === 'Scissors') {
+        result = 'You Lose!';
+     }
+
+     } else if (playerMove === 'Rock') {
+        if(computerMove === 'Rock') {
+        result = 'Tie.';
+     } else if (computerMove === 'Paper') {
+        result = 'You Lose!';
+     } else if(computerMove === 'Scissors') {
+        result = 'You Win!';
+     }
+     }
+
+     
+     alert(`You picked ${playerMove}. Computer Picked ${computerMove}. ${result}`);
+
     }
-    console.log(`Computer choice is: ${computerChoice}`);
-}
-
-function playRound(computerSelection, playerSelection){
-    if(computerSelection === playerSelection) {
-        return 'Result of the game: DRAW!';
-    } else if(computerSelection === 'rock' && playerSelection === 'paper'){
-        return 'Paper beats rock \n The winner is: Player!';
-    } else if('rock' && playerSelection === 'scissors'){
-        return 'Rock beats scissors \n The winner is: Computer!';
-    } else if('paper' && playerSelection === 'rock'){
-        return 'Paper beats rock \n The winner is: Computer!';
-    } else if('paper' && playerSelection === 'scissors'){
-        return 'Scissors beat paper \n The winner is Player!';
-    } else if('scissors' && playerSelection === 'rock'){
-        return 'Rock beats scissors \n The winner is: Player!';
-    } else if('scissors' && playerSelection === 'paper'){
-        return 'Paper beats scissors \n The winner is: Computer!';
-    } else {
-        return 'Use only allowed choices: ROCK, PAPER OR SCISSORS!'
+     /* Kemi krijuar ketu variablen pasi qe nese krijohet mbrenda nuk mund te perdorim funksionet per mos perseritje te 
     }
-}
+    kodit */
+	function pickComptuerMove() {
+        const randomNumber = Math.random();
 
-let computerChoice = getComputerChoice();
-const playerChoice = prompt("Make your choice:").toLowerCase();
-console.log(`Player choice is: ${playerChoice}`);
+        let computerMove = '';
 
-console.log(playRound(computerChoice, playerChoice));
+     if(randomNumber >= 0 && randomNumber < 1 / 3) {
+         computerMove = 'Rock';
+     } else if (randomNumber >= 1 / 3 && randomNumber < 2 / 3) {
+         computerMove = 'Paper';
+     } else if (randomNumber >= 2 / 3 && randomNumber < 1) {
+         computerMove = 'Scissors';
+     }
+
+     return computerMove;
+    }
+</script>
+</body>
+</html>
